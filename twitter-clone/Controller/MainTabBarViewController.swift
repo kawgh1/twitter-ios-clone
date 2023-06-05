@@ -17,7 +17,7 @@ class MainTabBarViewController: UITabBarController {
         button.backgroundColor = .twitterBlue
         button.setImage(UIImage(named: "new_tweet"), for: .normal)
         // action handler
-        button.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        button.addTarget(MainTabBarViewController.self, action: #selector(actionButtonTapped), for: .touchUpInside)
         return button
     }()
     
