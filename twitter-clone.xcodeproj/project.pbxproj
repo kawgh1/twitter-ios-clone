@@ -11,6 +11,7 @@
 		093E31532A2CEF940085D136 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31522A2CEF940085D136 /* RegistrationController.swift */; };
 		093E31552A2CF50A0085D136 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31542A2CF50A0085D136 /* Utilities.swift */; };
 		093E31572A2D8C680085D136 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 093E31562A2D8C680085D136 /* GoogleService-Info.plist */; };
+		093E31592A2D94AD0085D136 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31582A2D94AD0085D136 /* Constants.swift */; };
 		09A5A34B2A2824C0005EE085 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5A34A2A2824C0005EE085 /* AppDelegate.swift */; };
 		09A5A34D2A2824C0005EE085 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5A34C2A2824C0005EE085 /* SceneDelegate.swift */; };
 		09A5A3522A2824C0005EE085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09A5A3502A2824C0005EE085 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		093E31522A2CEF940085D136 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		093E31542A2CF50A0085D136 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		093E31562A2D8C680085D136 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		093E31582A2D94AD0085D136 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09A5A3472A2824C0005EE085 /* twitter-clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "twitter-clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A5A34A2A2824C0005EE085 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		09A5A34C2A2824C0005EE085 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +68,6 @@
 				29D89EB6A4F6199C6571C3EF /* Pods-twitter-clone.debug.xcconfig */,
 				EF347AC5F2EAD679946D650B /* Pods-twitter-clone.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -122,6 +123,7 @@
 			children = (
 				09A5A36E2A28302D005EE085 /* Extensions.swift */,
 				093E31542A2CF50A0085D136 /* Utilities.swift */,
+				093E31582A2D94AD0085D136 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -302,6 +304,7 @@
 				09A5A34D2A2824C0005EE085 /* SceneDelegate.swift in Sources */,
 				093E31532A2CEF940085D136 /* RegistrationController.swift in Sources */,
 				09A5A3672A28274B005EE085 /* FeedController.swift in Sources */,
+				093E31592A2D94AD0085D136 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
