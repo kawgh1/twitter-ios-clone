@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarViewController: UITabBarController {
     
@@ -25,20 +26,48 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+//        logUserOut()
+        view.backgroundColor = .twitterBlue
+//        let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+//
+//        if #available(iOS 13.0, *) {
+//            tabBarAppearance.configureWithDefaultBackground()
+//            tabBarAppearance.backgroundColor = UIColor.white
+//            UITabBar.appearance().standardAppearance = tabBarAppearance
+//        }
+//        if #available(iOS 15.0, *) {
+//            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+//        }
+        authenticateUserAndConfigureUI()
+      
 
-        if #available(iOS 13.0, *) {
-            tabBarAppearance.configureWithDefaultBackground()
-            tabBarAppearance.backgroundColor = UIColor.white
-            UITabBar.appearance().standardAppearance = tabBarAppearance
-        }
-        if #available(iOS 15.0, *) {
-            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
+    
+    // MARK: - API
+    
+    func authenticateUserAndConfigureUI() {
+        
+        if Auth.auth().currentUser == nil {
+            print("DEBUG: User is NOT logged in..")
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController:  LoginController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        } else {
+            print("DEBUG: User is logged in..")
+            configureViewControllers()
+            configureUI()
         }
         
-        configureViewControllers()
-        configureUI()
-
+    }
+    
+    func logUserOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print("DEBUG: Failed to sign out with error \(error.localizedDescription)")
+        }
     }
     
     // MARK: - Selectors

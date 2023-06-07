@@ -31,7 +31,7 @@ class RegistrationController: UIViewController {
         let view = Utilities().inputContainerView(withImage: image, textField: emailTextField)
         return view
     }()
-
+    
     private lazy var passwordContainerView: UIView = {
         let image = UIImage(imageLiteralResourceName: "ic_lock_outline_white_2x")
         let view = Utilities().inputContainerView(withImage: image, textField: passwordTextField)
@@ -43,7 +43,7 @@ class RegistrationController: UIViewController {
         let view = Utilities().inputContainerView(withImage: image, textField: fullNameTextField)
         return view
     }()
-
+    
     private lazy var usernameContainerView: UIView = {
         let image = UIImage(imageLiteralResourceName: "ic_person_outline_white_2x")
         let view = Utilities().inputContainerView(withImage: image, textField: usernameTextField)
@@ -115,48 +115,40 @@ class RegistrationController: UIViewController {
         guard let fullname = fullNameTextField.text else {return}
         guard let username = usernameTextField.text else {return}
         
-        guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else {return}
-        let filename = NSUUID().uuidString
-        let storageRef = STORAGE_PROFILE_IMAGES_REF.child(filename)
+        let credentials = AuthCredentials(email: email, password: password,
+                                          fullname: fullname, username: username,
+                                          profileImage: profileImage)
         
         
-        storageRef.putData(imageData, metadata: nil) { (meta, error) in
-            storageRef.downloadURL { (url, error) in
-                guard let profileImageUrl = url?.absoluteString else {return}
-                
-                Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                    if let error = error {
-                        print("DEBUG: Error is \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    guard let uid = result?.user.uid else { return}
-                    
-                    let values = ["email": email, "username": username, "fullname": fullname, "profileImageUrl": profileImageUrl]
-                    
-                    let ref = USERS_REF.child(uid)
-                    
-                    ref.updateChildValues(values) { (errors, ref) in
-                        print("DEBUG: Successfully registered user")
-                        
-                    }
-                    
-                }
-            }
+        
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+            print("DEBUG: Sign up successful...")
+            
+            // get main tab controller
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScene = scenes.first as? UIWindowScene
+            guard let window = windowScene?.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let tabController = window.rootViewController as? MainTabBarViewController else {return}
+            // call configureUI() method once user is logged in and authenticated
+            tabController.authenticateUserAndConfigureUI()
+            
+            self.dismiss(animated: true, completion: nil)
+            
         }
-        
-     
-        
-        
-        
-        
     }
+    
+    
+    
+    
+    
+    
+    
     
     @objc func handleShowLogin() {
         navigationController?.popViewController(animated: true)
     }
     
-
+    
     
     // MARK: - Helpers
     

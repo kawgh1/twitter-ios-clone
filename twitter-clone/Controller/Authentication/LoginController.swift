@@ -53,7 +53,7 @@ class LoginController: UIViewController {
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.layer.cornerRadius = 5
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.addTarget(LoginController.self, action: #selector(handleLogin), for: .touchUpInside)
+        button.addTarget(target, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -72,7 +72,28 @@ class LoginController: UIViewController {
     
     // MARK: - Selectors
     @objc func handleLogin() {
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
         
+        AuthService.shared.logUserIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("DEBUG: Error logging in \(error.localizedDescription)")
+                return
+            }
+            
+            print("DEBUG: Successful log in..")
+          
+            
+            // get main tab controller
+            let scenes = UIApplication.shared.connectedScenes
+            let windowScene = scenes.first as? UIWindowScene
+            guard let window = windowScene?.windows.first(where: { $0.isKeyWindow }) else {
+            return }
+            guard let tabController = window.rootViewController as? MainTabBarViewController else {return}
+            // call configureUI() method once user is logged in and authenticated
+            tabController.authenticateUserAndConfigureUI()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowSignUp() {
