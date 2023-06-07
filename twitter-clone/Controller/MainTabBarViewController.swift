@@ -28,16 +28,16 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
 //        logUserOut()
         view.backgroundColor = .twitterBlue
-//        let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
-//
-//        if #available(iOS 13.0, *) {
-//            tabBarAppearance.configureWithDefaultBackground()
-//            tabBarAppearance.backgroundColor = UIColor.white
-//            UITabBar.appearance().standardAppearance = tabBarAppearance
-//        }
-//        if #available(iOS 15.0, *) {
-//            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-//        }
+        let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+
+        if #available(iOS 13.0, *) {
+            tabBarAppearance.configureWithDefaultBackground()
+            tabBarAppearance.backgroundColor = UIColor.white
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+        }
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        }
         authenticateUserAndConfigureUI()
       
 
