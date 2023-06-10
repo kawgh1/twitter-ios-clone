@@ -12,13 +12,24 @@ class MainTabBarViewController: UITabBarController {
     
     // MARK: - Properties
     
+
+    
+    var user: User? {
+        didSet { print("DEBUG: Did set user in Main Tab Controller..")
+            guard let nav = viewControllers?[0] as? UINavigationController else {return}
+            guard let feed = nav.viewControllers.first as? FeedController else {return}
+            
+            feed.user = user
+        }
+    }
+    
     let actionButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .white
         button.backgroundColor = .twitterBlue
         button.setImage(UIImage(named: "new_tweet"), for: .normal)
         // action handler
-        button.addTarget(MainTabBarViewController.self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        button.addTarget(target, action: #selector(actionButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -45,6 +56,13 @@ class MainTabBarViewController: UITabBarController {
     
     // MARK: - API
     
+    func fetchUser() {
+        UserService.shared.fetchUser { user in
+            print("DEBUG: Main tab user is \(user)")
+            self.user = user
+        }
+    }
+    
     func authenticateUserAndConfigureUI() {
         
         if Auth.auth().currentUser == nil {
@@ -58,6 +76,7 @@ class MainTabBarViewController: UITabBarController {
             print("DEBUG: User is logged in..")
             configureViewControllers()
             configureUI()
+            fetchUser()
         }
         
     }
@@ -73,7 +92,11 @@ class MainTabBarViewController: UITabBarController {
     // MARK: - Selectors
     
     @objc func actionButtonTapped() {
-        print(123)
+        guard let user = user else {return}
+        let controller = UploadTweetController(user: user)
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen // full screen controller
+        present(nav, animated: true, completion: nil)
     }
     
     

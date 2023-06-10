@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091935572A34E38000A02440 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091935562A34E38000A02440 /* UserService.swift */; };
+		091935592A34E5F700A02440 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091935582A34E5F700A02440 /* User.swift */; };
+		0919355B2A35096400A02440 /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0919355A2A35096400A02440 /* UploadTweetController.swift */; };
+		0919355D2A351B9500A02440 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0919355C2A351B9500A02440 /* CaptionTextView.swift */; };
 		093E31512A2CEF230085D136 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31502A2CEF230085D136 /* LoginController.swift */; };
 		093E31532A2CEF940085D136 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31522A2CEF940085D136 /* RegistrationController.swift */; };
 		093E31552A2CF50A0085D136 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31542A2CF50A0085D136 /* Utilities.swift */; };
@@ -28,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		091935562A34E38000A02440 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		091935582A34E5F700A02440 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0919355A2A35096400A02440 /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
+		0919355C2A351B9500A02440 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
 		093E31502A2CEF230085D136 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		093E31522A2CEF940085D136 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		093E31542A2CF50A0085D136 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -134,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				093E315A2A30453B0085D136 /* AuthService.swift */,
+				091935562A34E38000A02440 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 				09A5A3682A282793005EE085 /* ExploreController.swift */,
 				09A5A36A2A2827A6005EE085 /* NotificationsController.swift */,
 				09A5A36C2A2827B2005EE085 /* ConversationsController.swift */,
+				0919355A2A35096400A02440 /* UploadTweetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -161,6 +171,7 @@
 		09A5A3622A2825DA005EE085 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0919355C2A351B9500A02440 /* CaptionTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +179,7 @@
 		09A5A3632A2825DC005EE085 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				091935582A34E5F700A02440 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,13 +308,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091935572A34E38000A02440 /* UserService.swift in Sources */,
 				09A5A36B2A2827A6005EE085 /* NotificationsController.swift in Sources */,
+				0919355D2A351B9500A02440 /* CaptionTextView.swift in Sources */,
 				09A5A36D2A2827B2005EE085 /* ConversationsController.swift in Sources */,
 				093E31552A2CF50A0085D136 /* Utilities.swift in Sources */,
 				09A5A3652A282656005EE085 /* MainTabBarViewController.swift in Sources */,
 				09A5A36F2A28302D005EE085 /* Extensions.swift in Sources */,
 				093E31512A2CEF230085D136 /* LoginController.swift in Sources */,
 				093E315B2A30453B0085D136 /* AuthService.swift in Sources */,
+				0919355B2A35096400A02440 /* UploadTweetController.swift in Sources */,
+				091935592A34E5F700A02440 /* User.swift in Sources */,
 				09A5A3692A282793005EE085 /* ExploreController.swift in Sources */,
 				09A5A34B2A2824C0005EE085 /* AppDelegate.swift in Sources */,
 				09A5A34D2A2824C0005EE085 /* SceneDelegate.swift in Sources */,
