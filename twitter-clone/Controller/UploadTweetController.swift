@@ -71,7 +71,15 @@ class UploadTweetController: UIViewController {
     }
     
     @objc func handleUploadTweet() {
-        print("DEBUG: Upload tweet here..")
+        guard let caption = captionTextView.text else {return}
+        TweetService.shared.uploadTweet(caption: caption) { (error, ref) in
+            if let error = error {
+                print("DEBUG: Failed to upload tweet with error \(error.localizedDescription)")
+                return
+            }
+            print("DEBUG: Tweet did upload to DB..")
+
+        }
         
         dismiss(animated: true, completion: nil)
 
@@ -85,14 +93,18 @@ class UploadTweetController: UIViewController {
         view.backgroundColor = .white
        
         configureNavigationBar()
-        
+                
         let stack = UIStackView(arrangedSubviews: [profileImageView, captionTextView])
         stack.axis = .horizontal
         stack.spacing = 12
+        stack.alignment = .top
+        // allow items in stack view to have different heights without skewing objects
+        stack.distribution = .fill
+        stack.heightAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
         
         view.addSubview(stack)
         
-        stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, paddingTop: 16, paddingLeft: 16)
+        stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
         profileImageView.sd_setImage(with: user.profileImageUrl, completed: nil)
     }
     
