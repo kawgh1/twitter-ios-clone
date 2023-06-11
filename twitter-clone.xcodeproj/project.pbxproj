@@ -12,6 +12,8 @@
 		091935592A34E5F700A02440 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091935582A34E5F700A02440 /* User.swift */; };
 		0919355B2A35096400A02440 /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0919355A2A35096400A02440 /* UploadTweetController.swift */; };
 		0919355D2A351B9500A02440 /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0919355C2A351B9500A02440 /* CaptionTextView.swift */; };
+		092892F32A36309000209814 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092892F22A36309000209814 /* Tweet.swift */; };
+		092892F52A36353900209814 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092892F42A36353900209814 /* TweetCell.swift */; };
 		093E31512A2CEF230085D136 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31502A2CEF230085D136 /* LoginController.swift */; };
 		093E31532A2CEF940085D136 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31522A2CEF940085D136 /* RegistrationController.swift */; };
 		093E31552A2CF50A0085D136 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093E31542A2CF50A0085D136 /* Utilities.swift */; };
@@ -38,6 +40,8 @@
 		091935582A34E5F700A02440 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0919355A2A35096400A02440 /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
 		0919355C2A351B9500A02440 /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
+		092892F22A36309000209814 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		092892F42A36353900209814 /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		093E31502A2CEF230085D136 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		093E31522A2CEF940085D136 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		093E31542A2CF50A0085D136 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				0919355C2A351B9500A02440 /* CaptionTextView.swift */,
+				092892F42A36353900209814 /* TweetCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				091935582A34E5F700A02440 /* User.swift */,
+				092892F22A36309000209814 /* Tweet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				093E31552A2CF50A0085D136 /* Utilities.swift in Sources */,
 				09A5A3652A282656005EE085 /* MainTabBarViewController.swift in Sources */,
 				09A5A36F2A28302D005EE085 /* Extensions.swift in Sources */,
+				092892F52A36353900209814 /* TweetCell.swift in Sources */,
 				093E31512A2CEF230085D136 /* LoginController.swift in Sources */,
 				093E315B2A30453B0085D136 /* AuthService.swift in Sources */,
 				0919355B2A35096400A02440 /* UploadTweetController.swift in Sources */,
@@ -328,6 +335,7 @@
 				093E31532A2CEF940085D136 /* RegistrationController.swift in Sources */,
 				09A5A3672A28274B005EE085 /* FeedController.swift in Sources */,
 				093E31592A2D94AD0085D136 /* Constants.swift in Sources */,
+				092892F32A36309000209814 /* Tweet.swift in Sources */,
 				091301952A352F72001613E6 /* TweetService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +387,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -404,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -439,7 +447,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -458,7 +466,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -484,6 +492,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,6 +522,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
