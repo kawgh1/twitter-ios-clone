@@ -57,7 +57,8 @@ class MainTabBarViewController: UITabBarController {
     // MARK: - API
     
     func fetchUser() {
-        UserService.shared.fetchUser { user in
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        UserService.shared.fetchUserById(uid: uid) { user in
             print("DEBUG: Main tab user is \(user)")
             self.user = user
         }

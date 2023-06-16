@@ -29,12 +29,17 @@ struct TweetService {
         var tweets = [Tweet]()
         
         // .childAdded is a firebase listener that grabs the last added item to the collection and returns it
-        TWEETS_REF.observe(.childAdded) { snapshot in
+        TWEETS_REF.observe(.childAdded) { snapshot  in
             guard let dictionary = snapshot.value as? [String: Any] else {return}
+            guard let uid = dictionary["uid"] as? String else {return}
             let tweetId = snapshot.key
-            let tweet = Tweet(tweetId: tweetId, dictionary: dictionary)
-            tweets.append(tweet)
-            completion(tweets)
+            
+            UserService.shared.fetchUserById(uid: uid) { user in
+                let tweet = Tweet(user: user, tweetId: tweetId, dictionary: dictionary)
+                tweets.append(tweet)
+                completion(tweets)
+            }
+          
             
         }
     }

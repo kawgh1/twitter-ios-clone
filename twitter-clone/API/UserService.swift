@@ -10,11 +10,11 @@ import Firebase
 struct UserService {
     static let shared = UserService()
     
-    func fetchUser(completion: @escaping(User) -> Void) {
+    func fetchUserById(uid: String, completion: @escaping(User) -> Void) {
         print("DEBUG: Fetch current User Info...")
         
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        print("DEBUG: Current Uid is \(uid)")
+//        guard let uid = Auth.auth().currentUser?.uid else {return}
+//        print("DEBUG: Current Uid is \(uid)")
         
         USERS_REF.child(uid).observeSingleEvent(of: .value) { snapshot in
             print("DEBUG: Snapshot: \(snapshot)")
