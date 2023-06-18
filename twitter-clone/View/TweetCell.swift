@@ -131,7 +131,7 @@ class TweetCell: UICollectionViewCell {
     // MARK: - Selectors
     
     @objc func handleProfileImageTapped() {
-        print("DEBUG: Profile Image tapped..")
+        print("DEBUG: Profile Image tapped inside TweetCell..")
         delegate?.handleProfileImageTapped(self)
         
     }
