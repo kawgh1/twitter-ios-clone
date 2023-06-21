@@ -33,6 +33,8 @@
 		09A5A36F2A28302D005EE085 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5A36E2A28302D005EE085 /* Extensions.swift */; };
 		09EA87012A3C32D000BDBE7B /* TweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA87002A3C32D000BDBE7B /* TweetViewModel.swift */; };
 		09EA87032A3E0F2D00BDBE7B /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA87022A3E0F2D00BDBE7B /* ProfileController.swift */; };
+		09EA87052A4314E500BDBE7B /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA87042A4314E500BDBE7B /* ProfileHeader.swift */; };
+		09EA87072A43260800BDBE7B /* ProfileFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EA87062A43260800BDBE7B /* ProfileFilterView.swift */; };
 		439BDF653AA54E067F21BF1E /* Pods_twitter_clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5301F71FD600BBAEE218BE63 /* Pods_twitter_clone.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		09A5A36E2A28302D005EE085 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		09EA87002A3C32D000BDBE7B /* TweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetViewModel.swift; path = "twitter-clone/View/TweetViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		09EA87022A3E0F2D00BDBE7B /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		09EA87042A4314E500BDBE7B /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		09EA87062A43260800BDBE7B /* ProfileFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterView.swift; sourceTree = "<group>"; };
 		29D89EB6A4F6199C6571C3EF /* Pods-twitter-clone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter-clone.debug.xcconfig"; path = "Target Support Files/Pods-twitter-clone/Pods-twitter-clone.debug.xcconfig"; sourceTree = "<group>"; };
 		5301F71FD600BBAEE218BE63 /* Pods_twitter_clone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_twitter_clone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF347AC5F2EAD679946D650B /* Pods-twitter-clone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter-clone.release.xcconfig"; path = "Target Support Files/Pods-twitter-clone/Pods-twitter-clone.release.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +190,8 @@
 			children = (
 				0919355C2A351B9500A02440 /* CaptionTextView.swift */,
 				092892F42A36353900209814 /* TweetCell.swift */,
+				09EA87042A4314E500BDBE7B /* ProfileHeader.swift */,
+				09EA87062A43260800BDBE7B /* ProfileFilterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				09A5A3652A282656005EE085 /* MainTabBarViewController.swift in Sources */,
 				09A5A36F2A28302D005EE085 /* Extensions.swift in Sources */,
 				09EA87032A3E0F2D00BDBE7B /* ProfileController.swift in Sources */,
+				09EA87052A4314E500BDBE7B /* ProfileHeader.swift in Sources */,
 				092892F52A36353900209814 /* TweetCell.swift in Sources */,
 				093E31512A2CEF230085D136 /* LoginController.swift in Sources */,
 				093E315B2A30453B0085D136 /* AuthService.swift in Sources */,
@@ -342,6 +349,7 @@
 				09EA87012A3C32D000BDBE7B /* TweetViewModel.swift in Sources */,
 				093E31532A2CEF940085D136 /* RegistrationController.swift in Sources */,
 				09A5A3672A28274B005EE085 /* FeedController.swift in Sources */,
+				09EA87072A43260800BDBE7B /* ProfileFilterView.swift in Sources */,
 				093E31592A2D94AD0085D136 /* Constants.swift in Sources */,
 				092892F32A36309000209814 /* Tweet.swift in Sources */,
 				091301952A352F72001613E6 /* TweetService.swift in Sources */,
