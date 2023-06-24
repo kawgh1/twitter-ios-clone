@@ -11,6 +11,12 @@ class ProfileHeader: UICollectionReusableView {
     
     // MARK: - Properties
     
+    var user: User? {
+        didSet{
+            configure()
+        }
+    }
+    
     private let filterBar = ProfileFilterView()
     
     
@@ -76,11 +82,44 @@ class ProfileHeader: UICollectionReusableView {
         return label
     }()
     
+    // ProfileFilterViewCell
+    
+    private let underlineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .twitterBlue
+        return view
+    }()
+    
+    // Following
+    
+    private let followingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "1 Following"
+
+        
+        let followTap = UITapGestureRecognizer(target: target, action: #selector(handleFollowersTapped))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(followTap)
+        return label
+    }()
+    
+    private let followersLabel: UILabel = {
+        let label = UILabel()
+        label.text = "2 Followers"
+        
+        let followTap = UITapGestureRecognizer(target: target, action: #selector(handleFollowingTapped))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(followTap)
+        return label
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
+        filterBar.delegate = self
+        
         addSubview(containerview)
         containerview.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, height: 108)
         
@@ -103,8 +142,25 @@ class ProfileHeader: UICollectionReusableView {
         addSubview(userDetailsStack)
         userDetailsStack.anchor(top: profileImageView.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 12, paddingRight: 12)
         
+        let followStack = UIStackView(arrangedSubviews: [followingLabel, followersLabel])
+        
+        followStack.axis = .horizontal
+        followStack.distribution = .fillEqually
+        followStack.spacing = 8
+        
+        addSubview(followStack)
+        followStack.anchor(top: userDetailsStack.bottomAnchor, left: leftAnchor, paddingTop: 8, paddingLeft: 12)
+        
         addSubview(filterBar)
         filterBar.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, height: 50)
+        
+        addSubview(underlineView)
+        underlineView.anchor(left: leftAnchor, bottom: bottomAnchor, width: frame.width / 3, height: 1)
+        
+        
+ 
+
+        
     }
     
     required init?(coder: NSCoder) {
@@ -119,5 +175,42 @@ class ProfileHeader: UICollectionReusableView {
     
     @objc func handleEditProfileOrFollow() {
         
+    }
+    
+    @objc func handleFollowersTapped() {
+        
+    }
+    
+    @objc func handleFollowingTapped() {
+        
+    }
+    
+    // MARK: - Helpers
+
+    func configure() {
+        guard let user = user else {return}
+        
+        let viewModel = ProfileHeaderViewModel(user: user)
+        
+        followingLabel.attributedText = viewModel.followingString
+        followersLabel.attributedText = viewModel.followersString
+    }
+}
+
+
+
+// MARK: - ProfileFilterViewDelegate
+
+// this delegate delegates the didSelect action from our ProfileFilerView protocol up to our Profile Header
+
+extension ProfileHeader: ProfileFilterViewDelegate {
+    func filterView(_ view: ProfileFilterView, didSelect indexPath: IndexPath) {
+        guard let cell = view.collectionView.cellForItem(at: indexPath) as? ProfileFilterCell else {return}
+        
+        // so we grab the x position from our selected cell and then animate our underlineView to match that x position
+        let xPosition = cell.frame.origin.x
+        UIView.animate(withDuration: 0.3) {
+            self.underlineView.frame.origin.x = xPosition
+        }
     }
 }
