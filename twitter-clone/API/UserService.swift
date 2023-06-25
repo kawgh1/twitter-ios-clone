@@ -22,11 +22,24 @@ struct UserService {
             guard let dictionary = snapshot.value as? [String: AnyObject] else {return}
 //            print("DEBUG: Dictionary: \(dictionary)")
             
-            guard let username = dictionary["username"] as? String else {return}
+            guard dictionary["username"] is String else {return}
             
             let user = User(uid: uid, dictionary: dictionary)
             
             completion(user)
+        }
+    }
+    
+    func fetchUsers(completion: @escaping([User]) -> Void) {
+        var users = [User]()
+        
+        USERS_REF.observe(.childAdded) { snapshot in
+            let uid = snapshot.key
+            
+            guard let dictionary = snapshot.value as? [String: AnyObject] else {return}
+            let user = User(uid: uid, dictionary: dictionary)
+            users.append(user)
+            completion(users)
         }
     }
 }
