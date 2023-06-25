@@ -111,6 +111,7 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 extension ProfileController: ProfileHeaderDelegate {
     func handleDismissal() {
         print("DEBUG: Pressed dismiss..")
+        navigationItem.hidesBackButton = true // dont show the back button before the user profile image loads on Feed Controller
         navigationController?.popViewController(animated: true)
     }
 }

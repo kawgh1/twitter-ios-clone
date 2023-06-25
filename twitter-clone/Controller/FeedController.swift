@@ -40,7 +40,7 @@ class FeedController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barStyle = .default // make status bar icons white, doesnt work
-        navigationController?.navigationBar.isHidden = false // made a custom nav bar
+        navigationController?.navigationBar.isHidden = false
 
     }
     
@@ -49,7 +49,7 @@ class FeedController: UICollectionViewController {
     func fetchTweets() {
         TweetService.shared.fetchTweets { tweets in
             self.tweets = tweets
-            print("DEBUG: Tweets are.. \(tweets)")
+//            print("DEBUG: Tweets are.. \(tweets)")
         }
     }
     
@@ -85,7 +85,7 @@ class FeedController: UICollectionViewController {
         profileImageView.sd_setImage(with: user.profileImageUrl, completed: nil)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
-    }
+        }
 }
 
 // MARK: - UICollectionViewDelegate / DataSource

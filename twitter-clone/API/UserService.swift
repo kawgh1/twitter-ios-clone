@@ -20,7 +20,7 @@ struct UserService {
             print("DEBUG: Snapshot: \(snapshot)")
             
             guard let dictionary = snapshot.value as? [String: AnyObject] else {return}
-            print("DEBUG: Dictionary: \(dictionary)")
+//            print("DEBUG: Dictionary: \(dictionary)")
             
             guard let username = dictionary["username"] as? String else {return}
             
