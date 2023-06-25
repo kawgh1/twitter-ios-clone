@@ -16,6 +16,10 @@ class ProfileController: UICollectionViewController {
     // MARK: - Properties
     private let user: User
     
+    private var tweets = [Tweet]() {
+        didSet { collectionView.reloadData()}
+    }
+    
     
     // MARK: - Lifecycle
     init(user: User) {
@@ -31,6 +35,7 @@ class ProfileController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        fetchTweetsForUser()
         
         print("DEBUG: User is \(user)")
     }
@@ -42,7 +47,14 @@ class ProfileController: UICollectionViewController {
 
     }
     
-  
+    // MARK: - API
+    
+    func fetchTweetsForUser() {
+        TweetService.shared.fetchTweetsForUser(user: user) { tweets in
+            print("DEBUG: API call completed.. got user profile tweets..")
+            self.tweets = tweets
+        }
+    }
     
     // MARK: - Helpers
     
@@ -62,6 +74,7 @@ extension ProfileController {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! ProfileHeader
         
         header.user = user
+        header.delegate = self
         
         return header
     }
@@ -71,11 +84,12 @@ extension ProfileController {
 
 extension ProfileController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return tweets.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
+        cell.tweet = tweets[indexPath.row]
         return cell
     }
 }
@@ -89,5 +103,14 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 120)
+    }
+}
+
+// MARK: - ProfileHeader Delegate
+
+extension ProfileController: ProfileHeaderDelegate {
+    func handleDismissal() {
+        print("DEBUG: Pressed dismiss..")
+        navigationController?.popViewController(animated: true)
     }
 }

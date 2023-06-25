@@ -37,6 +37,13 @@ class FeedController: UICollectionViewController {
         fetchTweets()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default // make status bar icons white, doesnt work
+        navigationController?.navigationBar.isHidden = false // made a custom nav bar
+
+    }
+    
     // MARK: - API
     
     func fetchTweets() {

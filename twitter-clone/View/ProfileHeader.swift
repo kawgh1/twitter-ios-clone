@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ProfileHeaderDelegate: AnyObject {
+    func handleDismissal()
+}
+
 class ProfileHeader: UICollectionReusableView {
     
     // MARK: - Properties
@@ -18,6 +22,8 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     private let filterBar = ProfileFilterView()
+    
+    weak var delegate: ProfileHeaderDelegate?
     
     
     private lazy var containerview: UIView = {
@@ -94,8 +100,6 @@ class ProfileHeader: UICollectionReusableView {
     
     private let followingLabel: UILabel = {
         let label = UILabel()
-        label.text = "1 Following"
-
         
         let followTap = UITapGestureRecognizer(target: target, action: #selector(handleFollowersTapped))
         label.isUserInteractionEnabled = true
@@ -105,7 +109,6 @@ class ProfileHeader: UICollectionReusableView {
     
     private let followersLabel: UILabel = {
         let label = UILabel()
-        label.text = "2 Followers"
         
         let followTap = UITapGestureRecognizer(target: target, action: #selector(handleFollowingTapped))
         label.isUserInteractionEnabled = true
@@ -170,6 +173,8 @@ class ProfileHeader: UICollectionReusableView {
     // MARK: - Selectors
     
     @objc func handleDismissal() {
+        // dismiss() can only be called from a View Controller, so we have to write a protocol to delegate the dismissal action from the child ProfileHeader to the parent Profile View Controller
+        delegate?.handleDismissal()
         
     }
     
@@ -191,6 +196,9 @@ class ProfileHeader: UICollectionReusableView {
         guard let user = user else {return}
         
         let viewModel = ProfileHeaderViewModel(user: user)
+        
+        profileImageView.sd_setImage(with: user.profileImageUrl)
+        editProfileOrFollowButton.setTitle(viewModel.actionButtonTitle, for: .normal)
         
         followingLabel.attributedText = viewModel.followingString
         followersLabel.attributedText = viewModel.followersString
