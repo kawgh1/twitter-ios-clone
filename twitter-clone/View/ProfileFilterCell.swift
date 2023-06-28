@@ -24,6 +24,7 @@ class ProfileFilterCell: UICollectionViewCell {
         didSet{
             titleLabel.font = isSelected ? UIFont.boldSystemFont(ofSize: 14) : UIFont.systemFont(ofSize: 13)
             titleLabel.textColor = isSelected ? .twitterBlue : .lightGray
+            
         }
     }
     
@@ -32,6 +33,7 @@ class ProfileFilterCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        
         
         addSubview(titleLabel)
         titleLabel.center(inView: self)

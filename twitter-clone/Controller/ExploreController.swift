@@ -70,6 +70,8 @@ class ExploreController: UITableViewController {
     }
 }
 
+// MARK: - UITableView Delegate / DataSource
+
 extension ExploreController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return inSearchMode ? filteredUsers.count : users.count
@@ -79,14 +81,16 @@ extension ExploreController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SearchUserCell
         let user = inSearchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
         cell.user = user
+        cell.selectionStyle = .none
         return cell
     }
 }
 
 extension ExploreController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else {return}
+        guard let searchText = searchController.searchBar.text?.lowercased() else {return}
         print("DEBUG: Search text is \(searchText)")
-        tableView.reloadData()
+
+        filteredUsers = users.filter({ $0.username.contains(searchText) || (($0.fullname.lowercased().contains(searchText)))})
     }
 }
