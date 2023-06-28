@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProfileHeaderDelegate: AnyObject {
     func handleDismissal()
+    func handleEditProfileOrFollow(_ header: ProfileHeader)
 }
 
 class ProfileHeader: UICollectionReusableView {
@@ -54,7 +55,7 @@ class ProfileHeader: UICollectionReusableView {
         return iv
     }()
     
-    private lazy var editProfileOrFollowButton: UIButton = {
+    lazy var editProfileOrFollowButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Loading", for: .normal)
         button.layer.borderColor = UIColor.twitterBlue.cgColor
@@ -179,6 +180,7 @@ class ProfileHeader: UICollectionReusableView {
     }
     
     @objc func handleEditProfileOrFollow() {
+        delegate?.handleEditProfileOrFollow(self)
         
     }
     
@@ -194,6 +196,8 @@ class ProfileHeader: UICollectionReusableView {
 
     func configure() {
         guard let user = user else {return}
+        
+        print("DEBUG: DidSet caled for user \(user.username) in profile header..")
         
         let viewModel = ProfileHeaderViewModel(user: user)
         

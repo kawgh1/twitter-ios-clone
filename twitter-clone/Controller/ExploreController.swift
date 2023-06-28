@@ -39,6 +39,12 @@ class ExploreController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     // MARK: - API
     
     func fetchUsers() {
@@ -83,6 +89,12 @@ extension ExploreController {
         cell.user = user
         cell.selectionStyle = .none
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = inSearchMode ? filteredUsers[indexPath.row] : users[indexPath.row]
+        let controller = ProfileController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

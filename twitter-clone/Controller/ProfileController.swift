@@ -14,7 +14,7 @@ class ProfileController: UICollectionViewController {
     
     
     // MARK: - Properties
-    private let user: User
+    private var user: User
     
     private var tweets = [Tweet]() {
         didSet { collectionView.reloadData()}
@@ -36,6 +36,8 @@ class ProfileController: UICollectionViewController {
         super.viewDidLoad()
         configureCollectionView()
         fetchTweetsForUser()
+        checkIfUserIsFollowed()
+        fetchUserStats()
         
         print("DEBUG: User is \(user)")
     }
@@ -44,7 +46,7 @@ class ProfileController: UICollectionViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barStyle = .black // make status bar icons white, doesnt work
         navigationController?.navigationBar.isHidden = true // made a custom nav bar
-
+        
     }
     
     // MARK: - API
@@ -56,6 +58,20 @@ class ProfileController: UICollectionViewController {
         }
     }
     
+    func checkIfUserIsFollowed() {
+        UserService.shared.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
+            self.user.isFollowed = isFollowed
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func fetchUserStats() {
+        UserService.shared.fetchUserStats(uid: user.uid) { stats in
+            self.user.stats = stats
+            self.collectionView.reloadData()
+        }
+    }
+    
     // MARK: - Helpers
     
     func configureCollectionView() {
@@ -63,7 +79,7 @@ class ProfileController: UICollectionViewController {
         collectionView.contentInsetAdjustmentBehavior = .never // push top of ProfileHeader up to top edge of screen
         collectionView.register(TweetCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.register(ProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
-
+        
     }
 }
 
@@ -109,6 +125,36 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
 // MARK: - ProfileHeader Delegate
 
 extension ProfileController: ProfileHeaderDelegate {
+    func handleEditProfileOrFollow(_ header: ProfileHeader) {
+        
+        if user.isCurrentUser {
+            print("DEBUG: User is CurrentUser --> show EditProfile Controller..")
+            return
+        }
+        
+        print("DEBUG: User is followed is \(user.isFollowed) before button tap")
+        
+        
+        if user.isFollowed {
+            UserService.shared.unfollowUser(uid: user.uid) { (ref, err) in
+                print("DEBUG: Did unfollow user in backend..")
+                self.user.isFollowed = false
+                self.fetchUserStats()
+                self.collectionView.reloadData()
+            }
+        } else {
+            UserService.shared.followUser(uid: user.uid) { (ref, err) in
+                print("DEBUG: Did complete follow in backend..")
+                self.user.isFollowed = true
+                self.fetchUserStats()
+                self.collectionView.reloadData()
+            }
+        }
+      
+        
+    
+    }
+    
     func handleDismissal() {
         print("DEBUG: Pressed dismiss..")
         navigationItem.hidesBackButton = true // dont show the back button before the user profile image loads on Feed Controller
