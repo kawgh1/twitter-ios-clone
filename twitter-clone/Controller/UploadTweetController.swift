@@ -97,7 +97,7 @@ class UploadTweetController: UIViewController {
         let stack = UIStackView(arrangedSubviews: [profileImageView, captionTextView])
         stack.axis = .horizontal
         stack.spacing = 12
-        stack.alignment = .top
+        stack.alignment = .leading
         // allow items in stack view to have different heights without skewing objects
         stack.distribution = .fill
         stack.heightAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
