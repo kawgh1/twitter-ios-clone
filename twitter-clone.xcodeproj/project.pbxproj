@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091114C62A665E380036925F /* UploadTweetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091114C52A665E380036925F /* UploadTweetViewModel.swift */; };
 		091301952A352F72001613E6 /* TweetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091301942A352F72001613E6 /* TweetService.swift */; };
 		091935572A34E38000A02440 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091935562A34E38000A02440 /* UserService.swift */; };
 		091935592A34E5F700A02440 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091935582A34E5F700A02440 /* User.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		091114C52A665E380036925F /* UploadTweetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UploadTweetViewModel.swift; path = "twitter-clone/View/UploadTweetViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		091301942A352F72001613E6 /* TweetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetService.swift; sourceTree = "<group>"; };
 		091935562A34E38000A02440 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		091935582A34E5F700A02440 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				09EA87002A3C32D000BDBE7B /* TweetViewModel.swift */,
 				09EA870A2A475E3300BDBE7B /* ProfileHeaderViewModel.swift */,
+				091114C52A665E380036925F /* UploadTweetViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				09A5A36F2A28302D005EE085 /* Extensions.swift in Sources */,
 				0928AAD32A4C595D003EC176 /* TweetController.swift in Sources */,
 				09EA87032A3E0F2D00BDBE7B /* ProfileController.swift in Sources */,
+				091114C62A665E380036925F /* UploadTweetViewModel.swift in Sources */,
 				09EA87052A4314E500BDBE7B /* ProfileHeader.swift in Sources */,
 				092892F52A36353900209814 /* TweetCell.swift in Sources */,
 				093E31512A2CEF230085D136 /* LoginController.swift in Sources */,

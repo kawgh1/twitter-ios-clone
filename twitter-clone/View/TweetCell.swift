@@ -9,6 +9,7 @@ import UIKit
 
 protocol TweetCellDelegate: AnyObject {
     func handleProfileImageTapped(_ cell: TweetCell)
+    func handleReplyTapped(_ cell: TweetCell)
 }
 
 
@@ -112,11 +113,11 @@ class TweetCell: UICollectionViewCell {
         // Tweet Buttons Stack
         let actionStack = UIStackView(arrangedSubviews: [commentButton, retweetButton, likeButton, shareButton])
         actionStack.axis = .horizontal
-        actionStack.spacing = 72
+        actionStack.spacing = 58
         
         addSubview(actionStack)
         actionStack.centerX(inView: self)
-        actionStack.anchor(bottom: bottomAnchor, paddingBottom: 8)
+        actionStack.anchor(bottom: bottomAnchor, paddingTop: 8, paddingBottom: 12)
         
         // horizontal 1px line separator between tweet cells
         let underlineView = UIView()
@@ -137,7 +138,7 @@ class TweetCell: UICollectionViewCell {
     }
     
     @objc func handleCommentTapped() {
-        
+        delegate?.handleReplyTapped(self)
     }
     
     @objc func handleRetweetTapped() {

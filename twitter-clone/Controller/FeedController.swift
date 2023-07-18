@@ -123,10 +123,12 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
         let viewModel = TweetViewModel(tweet: tweet)
         var height = viewModel.size(withText: tweet.caption, forWidth: view.frame.width).height
         
-        if (height > 110) {
-            height = 110
+        if (height < 25) {
+            height = 25
+        } else if (height > 130) {
+            height = 130
         }
-        return CGSize(width: view.frame.width, height: height + 80)
+        return CGSize(width: view.frame.width, height: height + 60)
     }
 }
 
@@ -140,5 +142,13 @@ extension FeedController: TweetCellDelegate {
         
         let controller = ProfileController(user: user)
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func handleReplyTapped(_ cell: TweetCell) {
+        guard let tweet = cell.tweet else {return}
+        let controller = UploadTweetController(user: tweet.user, config: .reply(tweet))
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
