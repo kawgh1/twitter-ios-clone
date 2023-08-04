@@ -118,8 +118,7 @@ class UploadTweetController: UIViewController {
         imageCaptionStack.alignment = .leading
         // allow items in stack view to have different heights without skewing objects
         imageCaptionStack.distribution = .fill
-        imageCaptionStack.heightAnchor.constraint(lessThanOrEqualToConstant: 500).isActive = true
-        
+        imageCaptionStack.heightAnchor.constraint(greaterThanOrEqualToConstant: 400).isActive = true
         let stack = UIStackView(arrangedSubviews: [replyLabel, imageCaptionStack])
         stack.axis = .vertical
         stack.spacing = 12
@@ -128,11 +127,11 @@ class UploadTweetController: UIViewController {
         
         stack.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingRight: 16)
         profileImageView.sd_setImage(with: user.profileImageUrl, completed: nil)
+
         
         // update display for UI
         actionButton.setTitle(viewModel.actionButtonTitle, for: .normal)
         captionTextView.placeholderLabel.text = viewModel.placeholderText
-        
         replyLabel.isHidden = !viewModel.shouldShowReplyLabel
         guard let replyText = viewModel.replyText else {return}
         replyLabel.text = replyText
