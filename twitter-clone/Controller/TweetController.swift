@@ -108,8 +108,16 @@ extension TweetController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Comment TweetCell height -- needs to be dynamic
-        return CGSize(width: view.frame.width, height: 120)
-    }
+        let tweet = replies[indexPath.row]
+        let viewModel = TweetViewModel(tweet: tweet)
+        var height = viewModel.size(withText: tweet.caption, forWidth: view.frame.width).height
+        
+        if (height < 25) {
+            height = 25
+        } else if (height > 130) {
+            height = 130
+        }
+        return CGSize(width: view.frame.width, height: height + 90)    }
 }
 
 extension TweetController: TweetHeaderDelegate {
